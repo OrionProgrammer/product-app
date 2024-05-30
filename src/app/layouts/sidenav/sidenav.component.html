@@ -1,0 +1,50 @@
+<div class="d-flex flex-column align-items-center align-items-sm-start  min-vh-100">
+    <a href="/" class="d-flex align-items-center logo">
+        <span class="fs-5 d-none d-sm-inline">Product App</span>
+    </a>
+    <div class="dropdown pb-4 user">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill"></i>
+            <span class="d-none d-sm-inline mx-1">Asheen</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a (click)="logOut()" class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+    </div>
+    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item">
+            <a href="#" routerLink="dashboard" class="nav-link align-middle px-0" title="Dashboard">
+                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+            </a>
+        </li>
+        <hr style="color:#fff; border: 1px solid #fff; width: 200% !important;" />
+        <li>
+          <i class="fs-4 bi bi-boxes"></i> <span class="ms-1 d-none d-sm-inline">Categories</span>
+          <ul class="nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                <li class="w-100">
+                    <a href="#" routerLink="category/all" class="nav-link px-0" title="View All"> <i class="fs-4 bi bi-collection-fill"></i> <span class="d-none d-sm-inline">View All</span></a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/category/new" class="nav-link px-0" title="Add New"> <i class="fs-4 bi bi-file-plus"></i> <span class="d-none d-sm-inline">Add New</span></a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <hr class="menu-hr" />
+          <i class="fs-4 bi bi-box-seam"></i> <span class="ms-1 d-none d-sm-inline">Products</span>
+          <ul class="nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                <li class="w-100">
+                    <a href="#" routerLink="/product/all" class="nav-link px-0" title="View All"> <i class="fs-4 bi bi-collection-fill"></i> <span class="d-none d-sm-inline">View All</span></a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/product/new" class="nav-link px-0" title="Add New"> <i class="fs-4 bi bi-file-plus"></i><span class="d-none d-sm-inline">Add New</span></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

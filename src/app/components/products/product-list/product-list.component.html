@@ -1,0 +1,64 @@
+<h4>Products</h4>
+
+<div class="inner-content">
+
+  <div class="row gx-1">
+    <div class="col ">
+     <div class="p-3 border bg-light d-flex justify-content-end">
+      <button class="btn btn-primary btn-sm col-md-2 p-2 m-2" [disabled]="isExporting" (click)="export()">
+        @if(isExporting){
+          <span class="spinner-border spinner-border-sm mr-1"></span>
+        }
+        <i class="bi bi-file-earmark-arrow-down-fill"></i> Export Products
+      </button>
+      <button class="btn btn-secondary btn-sm col-md-2 p-2 m-2" [disabled]="isImporting" (click)="file.click()">
+        @if(isImporting){
+          <span class="spinner-border spinner-border-sm mr-1"></span>
+        }
+        <i class="bi bi-file-earmark-arrow-up"></i> Import Products
+      </button>
+      <input type="file" #file (change)="import($event)" [hidden]="true" />
+     </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productId }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.code }}</td>
+        <td>{{ product.price }}</td>
+        <td class="col-md-3">
+          <a class="btn btn-outline-primary m-1" role="button" routerLink="../{{ product.productId }}"><i class="bi bi-pencil"></i> Edit</a>
+          <a href="#" class="btn btn-outline-danger m-1" role="button" (click)="delete(product.productId)"> <i class="bi bi-x"></i> Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" [class.active]="currentPage === page" *ngFor="let page of [].constructor(totalPages); let i = index">
+        <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

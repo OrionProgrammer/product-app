@@ -1,0 +1,52 @@
+
+<div class="logged-out">
+<div class="row col-md-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+        <h3>Please sign in</h3>
+    
+        <div class="form-floating" style="margin-bottom: 0.6em">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+          />
+          <label for="email">Email</label>
+          @if (submitted && f['email'].errors) {
+          <div class="invalid-feedback">
+            @if (f['email'].errors['required']) {
+            <div>Email is required!</div>
+            } @if (f['email'].errors['email']) {
+            <div>Email is In-valid!</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="form-floating" style="margin-bottom: 0.6em">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+          />
+          <label for="password">Password</label>
+          @if (submitted && f['password'].errors) {
+          <div class="invalid-feedback">
+            @if (f['password'].errors['required']) {
+            <div>Password is required!</div>
+            }
+          </div>
+          }
+        </div>
+        <button type="submit" [disabled]="loading" class="btn btn-primary">
+          @if(loading){
+            <span class="spinner-border spinner-border-sm mr-1"></span>
+          }
+          Login
+        </button> &nbsp;
+            <a href="#" routerLink="/register">Register</a>
+      </form>
+
+</div>
+</div>

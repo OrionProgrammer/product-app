@@ -1,0 +1,57 @@
+<h4 *ngIf="isAddMode">Add Category</h4>
+<h4 *ngIf="!isAddMode">Edit Category</h4>
+
+<div class="inner-content">
+<div class="row col-md-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+                [ngClass]="{ 'is-valid': submitted && !f['name'].errors }" />
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && f['name'].errors['required']">Name is required!</div>
+            </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="code" class="col-sm-2 col-form-label">Code</label>
+      <div class="col-sm-10">
+        <input type="text" maxlength="6" formControlName="code" class="form-control text-uppercase"
+                [ngClass]="{ 'is-invalid': submitted && f['code'].errors }"
+                [ngClass]="{ 'is-valid': submitted && !f['code'].errors }" />
+            <div *ngIf="submitted && f['code'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && f['code'].errors['required']">Code is required!</div>
+            </div>
+            <div *ngIf="submitted && f['code'].errors" class="invalid-feedback">
+              <div *ngIf="submitted && f['code'].errors['invalidCode']">
+                Code must contain exactly 3 letters followed by 3 numbers (e.g., ABC123).
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-10 offset-sm-2">
+        <div class="form-check">
+          <input [checked]="this.isActive" class="form-check-input" type="checkbox" id="isActive" (click)="isActiveChanged($event)">
+          <label class="form-check-label" for="isActive">
+            Is Active?
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-1">
+          <button type="submit" [disabled]="loading" class="btn btn-primary">
+            @if(loading){
+              <span class="spinner-border spinner-border-sm mr-1"></span>
+            }
+            Save
+          </button>
+        </div>
+      </div>
+  </form>
+</div>
+</div>
