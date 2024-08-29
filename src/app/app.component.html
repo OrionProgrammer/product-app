@@ -1,0 +1,24 @@
+<!-->Alert Box-->
+<div class="{{class}} " role="alert">
+    {{message}}  
+    <a class="close" (click)="close()" style="float:right; cursor: pointer;" [hidden]="message ==''">&times;</a>
+</div>
+
+@if(loggedIn){
+<!--Authorized Layout-->
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-0 sidebar">
+      <app-sidenav></app-sidenav>
+    </div>
+    <div class="col py-3 main">
+      <app-main-layout></app-main-layout>
+    </div>
+  </div>
+</div>
+} @else{
+<!--UnAuthorized Layout-->
+<div class="col py-3 main">
+  <app-unauth-layout></app-unauth-layout>
+</div>
+}

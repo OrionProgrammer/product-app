@@ -1,0 +1,101 @@
+<h4 *ngIf="isAddMode">Add Product</h4>
+<h4 *ngIf="!isAddMode">Edit Product</h4>
+
+<div class="inner-content">
+<div class="row">
+  <div class="col-md-6">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+                [ngClass]="{ 'is-valid': submitted && !f['name'].errors }" />
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && f['name'].errors['required']">Name is required!</div>
+            </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="code" class="col-sm-2 col-form-label">Code</label>
+      <div class="col-sm-10">
+        <input type="text" formControlName="code" class="form-control" id="code">
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="category" class="col-sm-2 col-form-label">Category</label>
+        <div class="col-sm-10">
+          <select #categorySelected (change)="onSelected()" name="category" class="form-select" aria-label="Default select example" id="category">
+            <option value="0">pick one</option>
+            @for(cat of categoryList; track cat.categoryId ){
+              <option [selected]="cat.categoryId==selectedCategory" value="{{cat.categoryId}}">{{cat.name}}</option>
+            }
+          </select>
+          <input type="hidden" formControlName="categoryId" class="form-control" id="code">
+        </div>
+      </div>
+    <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea formControlName="description" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="price" class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-10">
+          <input type="text" formControlName="price" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['price'].errors }"
+                [ngClass]="{ 'is-valid': submitted && !f['price'].errors }" />
+            <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && f['price'].errors['required']">Price is required!</div>
+                <div *ngIf="submitted && f['price'].errors['pattern']">Numbers only!</div>
+            </div>
+        </div>
+      </div> 
+      <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-selecxt" id="image" (change)="onFileChange($event)">
+        </div>
+      </div>
+    <div class="row mb-3">
+      <div class="col-sm-10 offset-sm-2">
+        <div class="form-check">
+          <input [checked]="this.isActive" class="form-check-input" type="checkbox" id="isActive" (click)="isActiveChanged($event)">
+          <label class="form-check-label" for="isActive">
+            Is Active?
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-1">
+            <button type="submit" [disabled]="loading" class="btn btn-primary">
+              @if(loading){
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+              }
+              Save
+            </button>
+        </div>
+      </div>
+  </form>
+</div>
+  <div class="col-md-6">
+    <!--= <img [src]="imageRecord.imgUrlSafe" alt="Uploaded Image" class="card-img" > -->
+    <button (click)="showValue()">show value</button>
+    <div *ngIf="imageUrl" class="card" style="max-width: 100%;">
+      <div class="card-body">
+        <img [src]="imageUrl" alt="Uploaded Image" class="card-img" >
+        
+        
+      </div>
+    </div>
+    <div *ngIf="!imageUrl" class="card" style="max-width: 100%;">
+      <div class="card-body">
+        Image not loading after saving. need to sort this out. Saving to DB is fine. response data has base64String. just need display it
+      </div>
+    </div>
+  </div>
+</div>
+</div>

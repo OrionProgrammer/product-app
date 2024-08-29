@@ -1,0 +1,94 @@
+
+body{
+    background: linear-gradient(#D9E0E8, #dcdcdc);
+}
+
+.sidebar{
+    background: linear-gradient(#2C353C, #20263A);
+    border: none;
+}
+
+a.logo{
+    background: linear-gradient(#2C353C, #20263A);
+    width: 100%;
+    text-decoration:  none;
+}
+
+a.logo span{
+    color:#ffff;
+    padding: 1em; margin: 0;
+}
+
+.user{
+    width: 100%;
+    padding: 1em 1em 0 1em;
+}
+
+
+#menu{
+    padding: 0 0 0 1em;
+}
+
+#menu a, #menu span, #menu i{
+    color: #fff;
+}
+
+#menu i{
+    font-size: 0.8em !important;
+    padding-right: 2px;
+}
+
+#menu ul li{
+    padding-left: 0.9em;
+}
+
+.menu-hr{
+    color:#fff; border: 1px solid #fff; width: 200% !important;
+}
+
+.main{
+    background: linear-gradient(#D9E0E8, #dcdcdc);
+}
+
+.inner-content{
+    margin: 1em;
+    background-color: #fff;
+    padding: 1em 1em 1em 2em;
+}
+
+h4{
+    margin: 0 0.8em 0 0.8em;
+    border-bottom: 1px solid #888;
+}
+
+form{
+    background-color: #eee;
+    padding: 1em;
+}
+
+.logged-out{
+    margin: 5% 30% auto 30%;
+    width: 80%;
+}
+
+.pagination a{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+
+    #menu{
+        padding: 0;
+        margin-left: -1em;
+    }
+    
+    #menu ul li{
+        padding-left: 0;
+        margin-left: -0.24em;
+    }
+
+    .menu-hr{
+        margin-left: -0.5em;
+    }
+   
+}
